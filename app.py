@@ -1,10 +1,13 @@
 import streamlit as st
 from transformers import AutoTokenizer, AutoModelForSequenceClassification
 import torch
-
+import os
+BASE_DIR = os.path.dirname(os.path.abspath(__file__))
+MODEL_PATH = os.path.join(BASE_DIR, "models", "xlmr-burmese")
 st.set_page_config(page_title="Burmese/Zomi Classifier", page_icon="🧠")
 
-MODEL_PATH = "../models/xlmr-burmese"
+MODEL_PATH = "/Users/tksiankop/Desktop/ai-mentalhealth-research/models/xlmr-burmese"
+
 
 st.title("🧠 Burmese/Zomi Mental Health Classifier")
 st.write("Analyze whether a short text expresses emotional distress or is neutral.")

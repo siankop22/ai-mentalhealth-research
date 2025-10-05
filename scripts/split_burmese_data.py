@@ -21,8 +21,8 @@ from sklearn.model_selection import StratifiedShuffleSplit
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--in_path", default="data/burmese/burmese_sample_clean.csv")
-    ap.add_argument("--out_dir", default="data/burmese/splits")
+    ap.add_argument("--in_path", default="data/burmese_sample_clean.csv")
+    ap.add_argument("--out_dir", default="data/splits")
     ap.add_argument("--test_size", type=float, default=0.1)
     ap.add_argument("--dev_size", type=float, default=0.1)
     ap.add_argument("--seed", type=int, default=42)

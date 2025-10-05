@@ -1,6 +1,10 @@
-id,text,language,label,source,license,collection_date,split,translation_of,collector,notes
-bm-0032,"Ka damlo hi, a nuam thei lo hi.",zom,distress,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0007,Ka zangin ka lung a nuam thei lo hi.,zom,distress,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0023,အိပ်ရာထက မထလိုတော့ဘူး။,my,distress,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0073,Ka pa sungah ka zong uh hi.,zom,neutral,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0092,မနက်ခင်းမှာ သီချင်းသီဆိုပြီး စိတ်လှုပ်ရှားတယ်။,my,neutral,self-authored,self-authored,2025-10-05,,,TSK,
+label,text,notes
+distress,တချို့နေ့တွေမှာ ထိုင်ပြီး အမြှောက်အမြားသိမ်းမရဘူး။,Distress signal (overwhelm/anxiety).
+distress,ဘယ်လိုပြန်ကောင်းမလဲဆိုတာ မမြင်တော့ဘူး။,Distress signal (overwhelm/anxiety).
+distress,ငြီးငွေ့မှုတွေ အတွင်းထဲမှာ ကြီးထွားလာတယ်။,Distress signal (overwhelm/anxiety).
+distress,နေ့ရက်တွေ ပုံမှန်မတော်တဆဖြတ်သန်းနေတယ်။,Distress signal (overwhelm/anxiety).
+neutral,ညနေခင်း အေးမြပြီး သာယာတယ်။,Neutral everyday statement.
+distress,မိမိလုပ်ရာ အလုပ်တွေကို ထိန်းမရတော့ဘူးလို့ တွေးတောနေတယ်။,Distress signal (overwhelm/anxiety).
+distress,ငြိမ်သက်မှု ရှာမတွေ့တော့ဘူး။,Distress signal (overwhelm/anxiety).
+neutral,Zanlai ka kawl ah ka kal lai; ruahhrua a si lo.,Neutral everyday statement.
+distress,ပင်ပန်းလွန်းလို့ စားရန်တောင် မစိတ်ကူးတော့ဘူး။,Distress signal (overwhelm/anxiety).

@@ -1,19 +1,14 @@
 # QA Report for data/burmese_sample.csv
 
 
-All required columns present.
+**Missing required columns:** ['id', 'language', 'source', 'license', 'collection_date', 'split', 'translation_of', 'collector']
 
 **Label distribution:**
 label
-distress    60
-neutral     40
+distress    350
+neutral     150
 
-**Language distribution:**
-language
-my     71
-zom    29
-
-**Duplicate texts:** 29 duplicates.
+**Duplicate texts:** 82 duplicates.
 
 
 **Overall status:** REVIEW ❗

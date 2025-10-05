@@ -1,6 +1,10 @@
-id,text,language,label,source,license,collection_date,split,translation_of,collector,notes
-bm-0034,Ka lungpi in a kiah hi.,zom,distress,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0062,အလုပ်ပြီးနောက် လေထုသန့်နေရာသွားမယ်။,my,neutral,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0004,ဘဝက မျှော်လင့်ချက်မရှိသလိုခံစားရတယ်။,my,distress,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0002,မနေ့ညက အိပ်မပျော်ဘူး။ စိတ်ထဲမှာအထိတ်အပြောက်တွေ ပြန့်နေတယ်။,my,distress,self-authored,self-authored,2025-10-05,,,TSK,
-bm-0064,Ka nau in eima an ki zong hi.,zom,neutral,self-authored,self-authored,2025-10-05,,,TSK,
+label,text,notes
+distress,Bawipa in ka hawl aw lo bang; ka ngah thei lo.,Distress signal (overwhelm/anxiety).
+distress,Na cem leh na cem in a kim thei lo; kei in a lungkham a om.,Distress signal (overwhelm/anxiety).
+distress,မနက်ဖြန်ကို ကြိုဆိုဖို့စိတ်အားမရှိတော့ဘူး။,Distress signal (overwhelm/anxiety).
+neutral,Kawlpi an thil a mawi zet; zanlai ka cawng to.,Neutral everyday statement.
+neutral,စာအုပ်အသစ် ကြည့်ဖြစ်တယ်။ စိတ်ဝင်စားဖို့ကောင်းတယ်။,Neutral everyday statement.
+distress,ငွေကြေးအကျပ်အတည်းကြောင့် ရှူမောနေတယ်။,Distress signal (overwhelm/anxiety).
+distress,Ka lungdam lo; ka thinlung a veve.,Distress signal (overwhelm/anxiety).
+distress,မိမိစကားတွေကိုလည်း လူတွေမနားထောင်ဘူး ထင်တယ်။,Distress signal (overwhelm/anxiety).
+distress,မိမိအပေါ်မယုံကြည်တော့ဘူး။ အခက်အခဲတွေကြားမှာ တစ်ယောက်တည်းခံနေတယ်။,Distress signal (overwhelm/anxiety).

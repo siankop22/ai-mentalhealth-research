@@ -1,40 +1,61 @@
-import streamlit as st
-from transformers import AutoTokenizer, AutoModelForSequenceClassification
-import torch
 import os
+import time
+import csv
+import torch
+import streamlit as st
+from pathlib import Path
+from transformers import AutoTokenizer, AutoModelForSequenceClassification
+
+# ---------- Paths ----------
 BASE_DIR = os.path.dirname(os.path.abspath(__file__))
-MODEL_PATH = os.path.join(BASE_DIR, "models", "xlmr-burmese")
+MODEL_PATH = os.path.join(BASE_DIR, "models", "xlmr-burmese")  # portable path
+
+# ---------- Streamlit Config ----------
 st.set_page_config(page_title="Burmese/Zomi Classifier", page_icon="🧠")
-
-MODEL_PATH = "/Users/tksiankop/Desktop/ai-mentalhealth-research/models/xlmr-burmese"
-
-
 st.title("🧠 Burmese/Zomi Mental Health Classifier")
 st.write("Analyze whether a short text expresses emotional distress or is neutral.")
+st.caption("အသံထွက်ကောင်းဖို့ စာတန်းတို (၁–၃) လောက်ရိုက်ပါ | Use short 1–3 sentences.")
 
+# ---------- Load Model ----------
 @st.cache_resource(show_spinner=False)
-def load_model():
-    tokenizer = AutoTokenizer.from_pretrained(MODEL_PATH)
-    model = AutoModelForSequenceClassification.from_pretrained(MODEL_PATH)
-    return tokenizer, model
+def load_model_and_labels(model_dir: str):
+    tok = AutoTokenizer.from_pretrained(model_dir, local_files_only=True)
+    mdl = AutoModelForSequenceClassification.from_pretrained(model_dir, local_files_only=True)
+
+    # detect label order
+    try:
+        id2label = {int(k): v for k, v in mdl.config.id2label.items()}
+    except Exception:
+        id2label = {0: "neutral", 1: "distress"}
+
+    distress_idx = next((i for i, name in id2label.items() if str(name).lower().startswith("distress")), 1)
+    neutral_idx = 0 if distress_idx == 1 else 1
+    return tok, mdl, id2label, distress_idx, neutral_idx
+
 
 with st.spinner("Loading model, please wait..."):
     try:
-        tokenizer, model = load_model()
-        st.success("✅ Model loaded successfully!")
+        tokenizer, model, id2label, DISTRESS_IDX, NEUTRAL_IDX = load_model_and_labels(MODEL_PATH)
+        st.success(f"✅ Model loaded. Labels: {id2label} (distress_index={DISTRESS_IDX})")
     except Exception as e:
         st.error(f"❌ Failed to load model from `{MODEL_PATH}`.\n\nError: {e}")
         st.stop()
 
-text = st.text_area("Enter Burmese or Zomi text:", height=120)
-
+# ---------- Demo Button ----------
+if "demo" not in st.session_state:
+    st.session_state["demo"] = ""
 if st.button("Try sample text"):
     st.session_state["demo"] = "ဒီနေ့ အလုပ်တွေကို လုံးဝ handle မရတော့ဘူး။ စိတ်အလွန်ပင်ပန်းနေတယ်။"
-text = st.text_area("Enter Burmese or Zomi text:", value=st.session_state.get("demo",""), height=120)
 
-st.caption("အသံထွက်ကောင်းဖို့ စာတန်းတို (၁–၃) လောက်ရိုက်ပါ | Use short 1–3 sentences.")
+# ---------- Text Area (Single) ----------
+text = st.text_area(
+    "Enter Burmese or Zomi text:",
+    value=st.session_state.get("demo", ""),
+    height=120,
+    key="main_textarea",  # ensures unique ID
+)
 
-
+# ---------- Analyze ----------
 if st.button("Analyze"):
     if not text.strip():
         st.warning("Please enter some text to analyze.")
@@ -45,18 +66,19 @@ if st.button("Analyze"):
                 logits = model(**inputs).logits
                 probs = torch.softmax(logits, dim=1)[0].tolist()
 
-            # Threshold-based classification
-            THR = 0.45  # lower threshold → higher distress recall
-            pred_label = 1 if probs[1] >= THR else 0
-            label = "Distress 😔" if pred_label == 1 else "Neutral 🙂"
-            st.caption(f"Decision threshold = {THR:.2f}")
+        # --- Threshold-based classification ---
+        THR = 0.45  # tweak for sensitivity
+        p_distress = probs[DISTRESS_IDX]
+        p_neutral = probs[NEUTRAL_IDX]
+        pred_label = 1 if p_distress >= THR else 0
+        label_text = "Distress 😔" if pred_label == 1 else "Neutral 🙂"
 
-        st.markdown(f"**Neutral:** {probs[0]:.2%} | **Distress:** {probs[1]:.2%}")
-        st.success(f"Prediction: **{label}**")
+        # --- Display results ---
+        st.caption(f"Decision threshold = {THR:.2f}")
+        st.markdown(f"**Neutral:** {p_neutral:.2%} | **Distress:** {p_distress:.2%}")
+        st.success(f"Prediction: **{label_text}**")
 
-from pathlib import Path
-import csv, time
-Path("reports/app_logs").mkdir(parents=True, exist_ok=True)
-with open("reports/app_logs/predictions.csv", "a", newline="", encoding="utf-8") as f:
-    w = csv.writer(f)
-    w.writerow([time.time(), text, probs[0], probs[1]])
+        # --- Logging (only after analyze) ---
+        Path("reports/app_logs").mkdir(parents=True, exist_ok=True)
+        with open("reports/app_logs/predictions.csv", "a", newline="", encoding="utf-8") as f:
+            csv.writer(f).writerow([time.time(), text, p_neutral, p_distress, THR, label_text])

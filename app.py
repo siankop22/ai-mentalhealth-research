@@ -28,6 +28,13 @@ with st.spinner("Loading model, please wait..."):
 
 text = st.text_area("Enter Burmese or Zomi text:", height=120)
 
+if st.button("Try sample text"):
+    st.session_state["demo"] = "ဒီနေ့ အလုပ်တွေကို လုံးဝ handle မရတော့ဘူး။ စိတ်အလွန်ပင်ပန်းနေတယ်။"
+text = st.text_area("Enter Burmese or Zomi text:", value=st.session_state.get("demo",""), height=120)
+
+st.caption("အသံထွက်ကောင်းဖို့ စာတန်းတို (၁–၃) လောက်ရိုက်ပါ | Use short 1–3 sentences.")
+
+
 if st.button("Analyze"):
     if not text.strip():
         st.warning("Please enter some text to analyze.")
@@ -37,7 +44,19 @@ if st.button("Analyze"):
             with torch.no_grad():
                 logits = model(**inputs).logits
                 probs = torch.softmax(logits, dim=1)[0].tolist()
+
+            # Threshold-based classification
+            THR = 0.45  # lower threshold → higher distress recall
+            pred_label = 1 if probs[1] >= THR else 0
+            label = "Distress 😔" if pred_label == 1 else "Neutral 🙂"
+            st.caption(f"Decision threshold = {THR:.2f}")
+
         st.markdown(f"**Neutral:** {probs[0]:.2%} | **Distress:** {probs[1]:.2%}")
-        label = "Distress 😔" if probs[1] > probs[0] else "Neutral 🙂"
         st.success(f"Prediction: **{label}**")
 
+from pathlib import Path
+import csv, time
+Path("reports/app_logs").mkdir(parents=True, exist_ok=True)
+with open("reports/app_logs/predictions.csv", "a", newline="", encoding="utf-8") as f:
+    w = csv.writer(f)
+    w.writerow([time.time(), text, probs[0], probs[1]])

@@ -1,0 +1,33 @@
+# temp CSVs created by notebooks
+train_temp.csv
+dev_temp.csv
+notebooks/train_temp.csv
+notebooks/dev_temp.csv
+
+# notebook checkpoints
+.ipynb_checkpoints/
+
+# experiment outputs
+results/
+logs/
+reports/experiments/*.txt
+
+# Python junk
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# virtualenv
+venv/
+.env/
+
+# VS Code / OS metadata
+.vscode/
+.DS_Store
+
+# LARGE MODEL WEIGHTS (avoid GitHub 100MB limit)
+models/**/*.bin
+models/**/*.safetensors
+models/**/*.pt
+models/**/*.ckpt

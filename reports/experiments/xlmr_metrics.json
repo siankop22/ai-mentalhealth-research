@@ -1,0 +1,30 @@
+{
+  "eval_loss": 0.6865426301956177,
+  "report": {
+    "neutral": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1-score": 0.0,
+      "support": 2.0
+    },
+    "distress": {
+      "precision": 0.6,
+      "recall": 1.0,
+      "f1-score": 0.75,
+      "support": 3.0
+    },
+    "accuracy": 0.6,
+    "macro avg": {
+      "precision": 0.3,
+      "recall": 0.5,
+      "f1-score": 0.375,
+      "support": 5.0
+    },
+    "weighted avg": {
+      "precision": 0.36,
+      "recall": 0.6,
+      "f1-score": 0.45,
+      "support": 5.0
+    }
+  }
+}

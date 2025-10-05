@@ -33,8 +33,8 @@ VALID_LANGS = {"my", "zom", "en-my"}
 
 def parse_args():
     ap = argparse.ArgumentParser()
-    ap.add_argument("--in_path", default="data/burmese/burmese_sample.csv")
-    ap.add_argument("--out_clean", default="data/burmese/burmese_sample_clean.csv")
+    ap.add_argument("--in_path", default="data/burmese_sample.csv")
+    ap.add_argument("--out_clean", default="data/burmese_sample_clean.csv")
     ap.add_argument("--report_path", default="reports/qa_burmese_data_report.md")
     ap.add_argument("--min_len", type=int, default=5)
     ap.add_argument("--max_len", type=int, default=500)

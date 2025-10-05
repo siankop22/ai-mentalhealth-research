@@ -51,7 +51,7 @@ def stratified_split(df, test_size=0.1, dev_size=0.1, label_col="label"):
     return train, dev, test
 
 def main():
-    in_path = "data/english/raw/english_raw.csv"  # adjust if needed
+    in_path = "data/raw/english_raw.csv"  # adjust if needed
     out_dir = "data/english"
     os.makedirs(f"{out_dir}/clean", exist_ok=True)
     os.makedirs(f"{out_dir}/splits", exist_ok=True)

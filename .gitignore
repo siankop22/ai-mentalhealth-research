@@ -31,3 +31,7 @@ models/**/*.bin
 models/**/*.safetensors
 models/**/*.pt
 models/**/*.ckpt
+
+models/*/pytorch_model.bin
+models/*/model.safetensors
+reports/app_logs/*.csv

@@ -1,17 +1,23 @@
-# AI for Mental Health Distress Detection (Independent Research)
+# AI for Mental Health Research
+**Multilingual NLP for emotion & distress signals across English, Burmese, and Zomi**
 
-## Objective
-Investigate whether multilingual transformer models (e.g., XLM-R) can identify emotional distress in text written in English and Burmese/Zomi.
+[![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
+[![Python](https://img.shields.io/badge/python-3.10+-blue.svg)](#)
+[![HuggingFace Models](https://img.shields.io/badge/🤗-Transformers-orange.svg)](#)
+[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/siankop22/ai-mentalhealth-research/blob/main/notebooks/demo_inference.ipynb)
 
-## Research Question
-Can a multilingual model detect distress-related posts with ≥ 0.75 macro-F1 while minimizing false positives across languages?
+> **Goal:** Build transparent, culturally-aware NLP models that identify affective signals (stress, depression, burnout) in multilingual text, with a focus on under-resourced languages.
 
-## Deliverables
-- Clean dataset (English + Burmese/Zomi)
-- Baseline and fine-tuned models
-- Model & data cards
-- 4–6 page research paper
-- Streamlit demo (local-only)
+---
 
-## Ethics
-No diagnostic claims. All text anonymized; only public, consented data used.
+## 🔍 Highlights
+- **Multilingual pipelines** for English, Burmese (မြန်မာ), and Zomi.
+- **Transfer learning** with BERT/RoBERTa; configurable training via YAML.
+- **Reproducible eval** (precision/recall/F1, macro/micro, per-group slices).
+- **Ethics & safety** guardrails, model cards, and bias diagnostics.
+- **One-click demo** notebook for quick inference.
+
+---
+
+## 📁 Project Structure
+

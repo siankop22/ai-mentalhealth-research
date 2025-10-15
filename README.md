@@ -20,4 +20,41 @@
 ---
 
 ## 📁 Project Structure
+ai-mentalhealth-research/
+├─ data/ # small samples or scripts to fetch data
+├─ notebooks/
+│ ├─ demo_inference.ipynb # quick portfolio demo
+│ └─ training_walkthrough.ipynb
+├─ src/
+│ ├─ configs/ # .yaml training/eval configs
+│ ├─ data/ # loaders, preprocessing, tokenization
+│ ├─ models/ # model wrappers, heads, losses
+│ ├─ training/ # loops, schedulers, logging
+│ └─ evaluation/ # metrics, slice analysis, confusion matrices
+├─ assets/ # screenshots, plots, social preview
+├─ tests/ # unit tests (pytest)
+├─ docs/ # site (GitHub Pages)
+├─ LICENSE
+├─ CITATION.cff
+├─ CODE_OF_CONDUCT.md
+├─ CONTRIBUTING.md
+├─ SECURITY.md
+└─ README.md
+
+
+---
+
+## 🚀 Quickstart
+```bash
+# 1) Create env
+python -m venv .venv && source .venv/bin/activate
+pip install -r requirements.txt
+
+# 2) Run a quick inference demo
+python -m src.models.infer \
+  --model_name "bert-base-multilingual-cased" \
+  --text "I feel overwhelmed and exhausted lately."
+
+# 3) Train (example config)
+python -m src.training.run --config src/configs/eng_bert.yaml
 

@@ -18,7 +18,7 @@
 - **One-click demo** notebook for quick inference.
 
 ---
-
+```
 ## 📁 Project Structure
 ai-mentalhealth-research/
 ├─ data/ # small samples or scripts to fetch data
@@ -41,8 +41,7 @@ ai-mentalhealth-research/
 ├─ SECURITY.md
 └─ README.md
 
-
----
+```
 
 ## 🚀 Quickstart
 ```bash
